@@ -1,6 +1,5 @@
 const webpack = require('webpack');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-.BundleAnalyzerPlugin
+
 module.exports = {
     mode: 'production',
     devtool: 'source-map',
@@ -10,6 +9,6 @@ module.exports = {
                 'process.env.name': JSON.stringify('Utilizando webpack prod'),
             }
         ),
-        new BundleAnalyzerPlugin(),
+        
     ]
 }
