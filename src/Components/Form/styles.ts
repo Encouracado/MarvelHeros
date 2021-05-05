@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
 `;
 
 export const FormStyle = styled.form`
->form{
+
     display: flex;
     flex-direction: column;
     width: 20rem;
@@ -29,7 +29,7 @@ export const FormStyle = styled.form`
     justify-content: center;
     align-items: center;
   
-  }
+  
 `;
 
 

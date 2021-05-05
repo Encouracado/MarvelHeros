@@ -5,15 +5,18 @@ import {AiOutlineNotification} from 'react-icons/ai'
 import {BiSearchAlt} from 'react-icons/bi'
 import {GoOctoface} from 'react-icons/go'
 
+
 export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   flex-basis: calc(33.333% - 20px);
+  
 `;
 
-export const HeroCard = styled.div`
+export const HeroCard = styled.button`
+
 display: flex;
 width: 20rem;
 height: 20rem;
@@ -42,11 +45,11 @@ margin-bottom: 5rem;
         font-weight: bold;
     }
 }
-
 `;
 
 export const ImageHero = styled.img`
-   width: 20rem;
+
+width: 20rem;
    height: 20rem;
    border: 2px solid var(--green);
    border-radius: 10%;
@@ -55,6 +58,7 @@ export const ImageHero = styled.img`
     border: 2px solid var(--light-hover);
     opacity:0.5;
    }
+
 `;
 
 

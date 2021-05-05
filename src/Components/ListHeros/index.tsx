@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootStore } from '../../store'
-import { GetAllHeros } from '../../store/repositories/actions'
-import { Character } from '../../store/repositories/types'
+import React, { useContext } from 'react'
+
+import { HeroContext } from '../../contexts/marvelContext'
+
 import Logo from '../Logo'
+import Button from '../Button'
 import {
   Container,
   HeroCard,
@@ -17,32 +17,32 @@ import {
 } from './styles'
 
 const RepositoryList: React.FC = () => {
-  const dispatch = useDispatch()
-  const HeroState = useSelector((state: RootStore) => state.repositories)
-  const ShowHeros = () => dispatch(GetAllHeros())
-  console.log('hero state: ', HeroState.hero?.data.results[1].name)
-  useEffect(() => {
-    ShowHeros()
-  }, [])
+  const { heroList } = useContext(HeroContext)
+  console.log(heroList)
   return (
     <>
       <Container>
         <Logo />
-        {HeroState.hero &&
-          HeroState.hero?.data.results.map((character: Character) => {
-            return (
-              <HeroCard key={character.id}>
-                <strong>{character.name}</strong>
-                <ImageHero
-                  src={
-                    character.thumbnail.path +
-                    '.' +
-                    character.thumbnail.extension
-                  }
-                />
-              </HeroCard>
-            )
-          })}
+
+        {heroList.map((hero) => {
+          return hero.id ? (
+            <HeroCard
+              key={hero.id}
+              type="button"
+              onClick={() => alert(hero.name)}
+            >
+              <strong>{hero.name}</strong>
+              <ImageHero
+                src={hero.thumbnail?.path + '.' + hero.thumbnail?.extension}
+              />
+              {console.log(
+                hero.thumbnail?.path + '+++' + hero.thumbnail?.extension
+              )}
+            </HeroCard>
+          ) : (
+            ''
+          )
+        })}
       </Container>
       <BottonMenu>
         <HomeIcon />
