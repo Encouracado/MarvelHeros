@@ -38,6 +38,7 @@ const Form: React.FC = () => {
           hash: hashKeys,
         },
       })
+      // eslint-disable-next-line no-use-before-define
       dataMarvel.data.data.results.map((hero: Hero) => {
         heroList.push(hero)
         history.push('/listHero')
