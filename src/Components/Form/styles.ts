@@ -7,7 +7,7 @@ export const Container = styled.div`
   justify-content: center;
   width: 70vw;
   height: 20rem;
-  //background: red;
+  
 `;
 
 export const Wrapper = styled.div`

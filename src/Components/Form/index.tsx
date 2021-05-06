@@ -29,19 +29,23 @@ const Form: React.FC = () => {
 
   const onSubmit = async function (data: Inputs) {
     let hashKeys = md5(ts + data.privateKey + data.publicKey)
-    const dataMarvel: Hero = await api.get('characters', {
-      params: {
-        ts,
-        apikey: data.publicKey,
-        hash: hashKeys,
-      },
-    })
 
-    dataMarvel.data.data.results.map((hero: Hero) => {
-      heroList.push(hero)
-    })
-
-    history.push('/listHero')
+    try {
+      const dataMarvel: Hero = await api.get('characters', {
+        params: {
+          ts,
+          apikey: data.publicKey,
+          hash: hashKeys,
+        },
+      })
+      dataMarvel.data.data.results.map((hero: Hero) => {
+        heroList.push(hero)
+        history.push('/listHero')
+      })
+    } catch (e) {
+      history.push('/')
+      alert('Alguma das chaves está incorreta')
+    }
   }
 
   return (
@@ -52,15 +56,25 @@ const Form: React.FC = () => {
             type="text"
             id="publicKey"
             placeholder="Public Key Here"
-            {...register('publicKey')}
+            {...register('publicKey', { required: true })}
           />
+          {errors.publicKey && (
+            <span style={{ color: 'red', marginBottom: '4px' }}>
+              E necessário inserir uma chave pública
+            </span>
+          )}
 
           <InputStyle
             type="text"
             id="privateKey"
             placeholder="Private Key Here"
-            {...register('privateKey')}
+            {...register('privateKey', { required: true })}
           />
+          {errors.privateKey && (
+            <span style={{ color: 'red', marginBottom: '12px' }}>
+              E necessário inserir uma chave privada
+            </span>
+          )}
 
           <Button onClick={handleSubmit(onSubmit)} outlined>
             GET HEROS!

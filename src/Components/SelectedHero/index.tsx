@@ -35,10 +35,9 @@ const SelectedHero: React.FC = () => {
           {OneHero.description ? (
             <span>{OneHero.description}</span>
           ) : (
-            <span>'This Hero does have not a description :/ </span>
+            <span>'This Hero does not have a description :/ </span>
           )}
           <Button onClick={() => Voltar()}>Voltar</Button>
-          <span>{OneHero.thumbnail?.extension}</span>
         </DescriptionHero>
       </Container>
     </>

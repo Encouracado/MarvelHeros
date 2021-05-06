@@ -18,9 +18,11 @@ html, body, #root {
     background: none;
     font-family: --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
+
 html {
     background: var(--primary);
 }
+
 :root {
     --primary: #000;
     --secondary:#15181C;
