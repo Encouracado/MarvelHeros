@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 
-import { HeroContext } from '../../contexts/marvelContext'
+import { HeroContext, Hero } from '../../contexts/marvelContext'
 
 import Logo from '../Logo'
 import Button from '../Button'
@@ -17,8 +18,15 @@ import {
 } from './styles'
 
 const RepositoryList: React.FC = () => {
-  const { heroList } = useContext(HeroContext)
-  console.log(heroList)
+  const { heroList, openDescriptionHero } = useContext(HeroContext)
+
+  const history = useHistory()
+
+  function ShowOneHero(hero: Hero) {
+    openDescriptionHero(hero)
+    history.push(`/ListHero/${hero.id}`)
+  }
+
   return (
     <>
       <Container>
@@ -29,15 +37,12 @@ const RepositoryList: React.FC = () => {
             <HeroCard
               key={hero.id}
               type="button"
-              onClick={() => alert(hero.name)}
+              onClick={() => ShowOneHero(hero)}
             >
               <strong>{hero.name}</strong>
               <ImageHero
                 src={hero.thumbnail?.path + '.' + hero.thumbnail?.extension}
               />
-              {console.log(
-                hero.thumbnail?.path + '+++' + hero.thumbnail?.extension
-              )}
             </HeroCard>
           ) : (
             ''

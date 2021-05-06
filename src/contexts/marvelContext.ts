@@ -12,6 +12,7 @@ export type Hero = {
 
 type HeroData = {
     heroList: Hero[],
+    OneHero: Hero,
     currentHero: number,
     openDescriptionHero: (hero: Hero) => void,
 }
