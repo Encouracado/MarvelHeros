@@ -29,19 +29,23 @@ const Form: React.FC = () => {
 
   const onSubmit = async function (data: Inputs) {
     let hashKeys = md5(ts + data.privateKey + data.publicKey)
+    try {
+      const dataMarvel: Hero = await api.get('characters', {
+        params: {
+          ts,
+          apikey: data.publicKey,
+          hash: hashKeys,
+        },
+      })
 
-    const dataMarvel: Hero = await api.get('characters', {
-      params: {
-        ts,
-        apikey: data.publicKey,
-        hash: hashKeys,
-      },
-    })
-    // eslint-disable-next-line no-use-before-define
-    dataMarvel.data.data.results.map((hero: Hero) => {
-      heroList.push(hero)
-      history.push('/listHero')
-    })
+      dataMarvel.data.data.results.map((hero: Hero) => {
+        heroList.push(hero)
+        history.push('/listHero')
+      })
+    } catch (e) {
+      history.push('/')
+      alert(e)
+    }
   }
 
   return (
